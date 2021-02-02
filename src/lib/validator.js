@@ -2,5 +2,5 @@ const email = (val) => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|("
 const phone = (val) => /^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/.test(String(val).toLowerCase())
 
 module.exports = {
-
+  email, phone
 }
