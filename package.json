@@ -2,7 +2,7 @@
   "name": "tanxnat",
   "version": "0.0.7",
   "description": "tanXnat",
-  "main": "dist/index.js",
+  "main": "dist/tanxnat.js",
   "scripts": {
     "dev": "node_modules/webpack/bin/webpack.js --mode production --watch --progress",
     "build": "node_modules/webpack/bin/webpack.js --mode production --progress",
