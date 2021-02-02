@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node_modules/webpack/bin/webpack.js --mode production --watch --progress",
-    "build": "node_modules/webpack/bin/webpack.js --mode production --progress --hide-modules"
+    "build": "node_modules/webpack/bin/webpack.js --mode production --progress --hide-modules",
+    "prepublish": "npm run build",
+    "release": "np",
+    "test": "testing..."
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
   },
   "homepage": "https://github.com/akkerise/tanXnat#readme",
   "devDependencies": {
+    "np": "^7.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.19.0",
     "webpack-cli": "^4.4.0"
