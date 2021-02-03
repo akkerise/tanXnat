@@ -7,7 +7,8 @@
     "dev": "node_modules/webpack/bin/webpack.js --mode production --watch --progress",
     "build": "node_modules/webpack/bin/webpack.js --mode production --progress",
     "prepublish": "npm run build",
-    "release": "np"
+    "release": "np",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/akkerise/tanXnat#readme",
   "devDependencies": {
+    "jest": "^26.6.3",
     "np": "^7.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.19.0",
