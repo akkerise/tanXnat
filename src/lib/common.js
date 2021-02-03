@@ -14,7 +14,7 @@ const random = (length = 6) => {
 }
 
 const vn = (str) => {
-  return str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
+  return str ? str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
     .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
     .replace(/ì|í|ị|ỉ|ĩ/g, "i")
     .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
@@ -27,7 +27,7 @@ const vn = (str) => {
     .replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O")
     .replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U")
     .replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y")
-    .replace(/Đ/g, "D")
+    .replace(/Đ/g, "D") : ''
 }
 
 const friendly = str => {
@@ -42,5 +42,10 @@ const friendly = str => {
 
 module.exports = {
   format: {},
-  to: { vn, spacePhone, friendly, random },
+  to: {
+    spacePhone,
+    friendly,
+    random,
+    vn,
+  },
 }
