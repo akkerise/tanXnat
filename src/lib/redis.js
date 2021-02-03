@@ -1,11 +1,11 @@
 const preKey = 'TAN_X_NAT';
 /**
- * @param @redis require('promise-redis')()
+ * @param @redis require('promise-redis')
  */
 
 const Redis = {
   init(redis, { host, port, auth_pass }) {
-    this.__client = redis.createClient({ host, port, auth_pass })
+    this.__client = redis().createClient({ host, port, auth_pass })
     this.__client.on("error", function (err) {
       console.error('ERROR_REDIS', err)
     });
