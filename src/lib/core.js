@@ -1,5 +1,5 @@
-const distinct = arrs => {
-  if (arrs === 'undefined' || !(arrs instanceof Array)) return
+const distinct = arr => {
+  if (arr === 'undefined' || !(arr instanceof Array)) return
   let found = new Set()
   return this.filter(element => {
     if (found.has(selector(element))) return false
