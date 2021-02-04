@@ -32,10 +32,6 @@ test(`TEST->phone: 096838182 => false`, () => {
   expect(phone('096838182')).toBe(false);
 });
 
-test(`TEST->phone: 0168381829 => false`, () => {
-  expect(phone('0168381829')).toBe(false);
-});
-
 test('TEST->spacePhone: 0988888888 => 0988 888 888', () => {
   expect(spacePhone('0988888888')).toBe('0988 888 888');
 });
