@@ -4,9 +4,10 @@
   "description": "tanXnat",
   "main": "dist/tanxnat.js",
   "scripts": {
+    "start": "npm run dev",
     "dev": "node_modules/webpack/bin/webpack.js --mode production --watch --progress",
     "build": "node_modules/webpack/bin/webpack.js --mode production --progress",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "release": "np",
     "test": "jest"
   },
