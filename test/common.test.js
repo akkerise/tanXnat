@@ -1,5 +1,6 @@
 'use strict';
 const { deduplicate, unique } = require('../src/lib/core')
+const { email, phone } = require('../src/lib/validator')
 const { to } = require('../src/lib/common')
 const { spacePhone, friendly, random, vn } = to
 
@@ -9,6 +10,30 @@ test('TEST->vn: Vào đây => Vao day', () => {
 
 test(`TEST->vn: null => ''`, () => {
   expect(vn(null)).toBe('');
+});
+
+test(`TEST->email: akkerise@gmail.com => true`, () => {
+  expect(email('akkerise@gmail.com')).toBe(true);
+});
+
+test(`TEST->email: tanXnat => false`, () => {
+  expect(email('tanXnat')).toBe(false);
+});
+
+test(`TEST->email: tanXnat@xxx => false`, () => {
+  expect(email('tanXnat@xxx')).toBe(false);
+});
+
+test(`TEST->phone: 0968381829 => true`, () => {
+  expect(phone('0968381829')).toBe(true);
+});
+
+test(`TEST->phone: 096838182 => false`, () => {
+  expect(phone('096838182')).toBe(false);
+});
+
+test(`TEST->phone: 0168381829 => false`, () => {
+  expect(phone('0168381829')).toBe(false);
 });
 
 test('TEST->spacePhone: 0988888888 => 0988 888 888', () => {
