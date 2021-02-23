@@ -9,15 +9,15 @@ const RESPONSES = {
 
 const isSuccess = response => response.error && response.error.status === true
 
-const getData = response => response.data || null
+const getSuccess = get(isSuccess)
 
-const getError = code => code ? RESPONSES[code] : RESPONSES[666]
+const getData = response => response.data || null
 
 const get = by => arr => by(arr)
 
-const getSuccess = get(isSuccess);
-
 const data = get(getData)
+
+const getError = code => code ? RESPONSES[code] : RESPONSES[666]
 
 const error = get(getError)
 
