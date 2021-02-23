@@ -36,12 +36,11 @@ const friendly = str => {
     .replace(/\/|\.|\,|\(|\)|\'|\"|\’|\!|\@|\#|\%|\*/g, '')
     .replace(/ |=|>|<=|<|>=|\=|\>|\<\=|\<|\>\=|\+|\^|\+|\$|\&|\_/g, '-')
     .replace(/^-+|-+$|-+/g, '-')
-    .toLowerCase() || ''
-      .toLocaleLowerCase()
+    .toLowerCase()
+    .toLocaleLowerCase() || ''
 }
 
 module.exports = {
-  format: {},
   to: {
     spacePhone,
     friendly,

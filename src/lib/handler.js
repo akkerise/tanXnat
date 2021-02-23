@@ -1,3 +1,13 @@
+/**
+const res = {
+  error: {
+    code: 200,
+    status: true
+  },
+  data: []
+}
+*/
+
 const RESPONSES = {
   200: {status: true, message: 'Success'},
   204: {status: true, message: 'Not content'},
@@ -22,16 +32,6 @@ const getError = code => code ? RESPONSES[code] : RESPONSES[666]
 const error = get(getError)
 
 const getResponse = (response) => ({error: error(response), data: data(response)})
-
-/**
-const res = {
-  error: {
-    code: 200,
-    status: true
-  },
-  data: []
-}
-*/
 
 module.exports = {
   getResponse,
