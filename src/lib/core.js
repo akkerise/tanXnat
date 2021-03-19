@@ -9,6 +9,13 @@ const debounce = (fn, delay) => {
   }
 }
 
+/**
+ * 
+ * @param {*} fn 
+ * @param {*} delay 
+ * @returns 
+ */
+
 const throttle = (fn, delay) => {
   return args => {
     if (fn.id) return
