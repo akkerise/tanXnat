@@ -3,10 +3,10 @@ const jobList = ['FE', 'BE'];
 
 // function
 var strategies = {
-  checkRole: (value) => value === 'admin',
-  checkGrade: (value) => value >= 1,
-  checkJob: (value) => jobList.includes(value),
-  checkEatType: (value) => value === 'eat Dog'
+  checkRole: value => value === 'admin',
+  checkGrade: value => value >= 1,
+  checkJob: value => jobList.includes(value),
+  checkEatType: value => value === 'eat Dog'
 }
 
 var Validator = function() {
