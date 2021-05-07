@@ -55,6 +55,6 @@ const loadCssInOrder = arrayOfCss => {
 //   '/path/to/another-file.js',
 //   '/yet/another/file.js',
 // ]).then(function() {
-//   // All scripts are loaded completely
-//   // Do something
+  // All scripts are loaded completely
+  // Do something
 // })
