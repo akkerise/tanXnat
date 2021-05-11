@@ -9,7 +9,7 @@ var strategies = {
   checkEatType: value => value === 'eat Dog'
 }
 
-class Validator1st {
+class Validator {
   constructor() {
     this.cache = [];
   }
@@ -19,12 +19,12 @@ class Validator1st {
   }
 
   check() {
-    return this.cache.every(fn => fn())
+    return this.cache.every(f => f())
   }
 }
 
 var compose1 = function () {
-  var validator = new Validator1st();
+  var validator = new Validator();
   const data1 = {
     role: 'admin',
     grade: 3
@@ -37,7 +37,7 @@ var compose1 = function () {
 console.log('compose1', compose1())
 
 var compose2 = function () {
-  var validator = new Validator1st();
+  var validator = new Validator();
   const data2 = {
     role: 'admin',
     job: 'BE'
