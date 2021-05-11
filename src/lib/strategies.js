@@ -9,51 +9,42 @@ var strategies = {
   checkEatType: value => value === 'eat Dog'
 }
 
-var Validator = function() {
-  this.cache = [];
+class Validator1st {
+  constructor() {
+    this.cache = [];
+  }
 
-  // add su kien
-  this.add = function(value, method) {
-    this.cache.push(function() {
-      return strategies[method](value);
-    });
-  };
+  add(value, method) {
+    this.cache.push(() => strategies[method](value))
+  }
 
-  // check
-  this.check = function() {
-    for (let i = 0; i < this.cache.length; i++) {
-      let valiFn = this.cache[i];
-      var data = valiFn(); // check tai day
-      if (!data) {
-        return false;
-      }
-    }
-    return true;
-  };
+  check() {
+    return this.cache.every(fn => fn())
+  }
 }
 
-var compose1 = function() {
-  var validator = new Validator();
+var compose1 = function () {
+  var validator = new Validator1st();
   const data1 = {
     role: 'admin',
     grade: 3
   };
   validator.add(data1.role, 'checkRole');
   validator.add(data1.grade, 'checkGrade');
-  const result = validator.check();
-  return result;
+  return validator.check();
 }
 
-var compose2 = function() {
-  var validator = new Validator();
+console.log('compose1', compose1())
+
+var compose2 = function () {
+  var validator = new Validator1st();
   const data2 = {
     role: 'admin',
     job: 'BE'
   };
   validator.add(data2.role, 'checkRole');
   validator.add(data2.job, 'checkJob');
-  const result = validator.check();
-  return result;
+  return validator.check();
 }
 
-console.log(compose2())
+console.log('compose2', compose2())
