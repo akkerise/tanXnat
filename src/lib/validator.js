@@ -7,6 +7,8 @@ const phone = (val) => {
   return re.test(String(val).toLowerCase());
 }
 
+// const phone = val => /^\+?[0-9]{6,15}$/i.test(val)
+
 module.exports = {
   email, phone
 }
