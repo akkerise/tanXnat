@@ -17,7 +17,7 @@ const RESPONSES = {
   666: {status: false, message: 'Something went wrong'},
 }
 
-const isSuccess = response => response.error && response.error.status === true
+const isSuccess = response => response.error && !!response.error.status 
 
 const getSuccess = get(isSuccess)
 
