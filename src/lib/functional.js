@@ -1,4 +1,4 @@
-const get = by => arr => by(arr)
+const get = fn => arr => fn(arr)
 
 const findMax = arr => Math.max(...arr)
 

@@ -29,3 +29,19 @@ let highestBoysGrade = maxGrade(getBoys(grades)) // 16
 let lowestBoysGrade = minGrade(getBoys(grades)) // 2
 let highestGirlsGrade = maxGrade(getGirls(grades)) // 18
 let lowestGirlsGrade = minGrade(getGirls(grades)) // 9
+
+const pickNumbers = (maximum) => {
+  return (fn) => {
+    const result = [];
+    for (let i = 1; i <= maximum; i++) {
+      if (fn(i)) result.push(i);
+    }
+    return result;
+  };
+}
+
+const take10 = pickNumbers(10);
+const odd = v => v % 2 === 1
+const even = v => v % 2 === 0
+console.log('take10->odd :>> ', take10(odd))
+console.log('take10->even :>> ', take10(even))
