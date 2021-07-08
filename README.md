@@ -2,7 +2,7 @@
 READ.
 1. Module `common`
 - Root function `to` when import, you need import with syntax `import common from "tanxnat"`, then follow me in below:
-+`const {to} = common;
++ `const {to} = common;
 + const {spacePhone, friendly, random, vn} = to`
 + ```spacePhone``` is function convert phone from `0968381829` to `0968 381 829`
 +``use`` `spacePhone("0968381829") => "0968 381 829"`
