@@ -34,10 +34,10 @@ const car = new CarBuilder()
   .addChassis('LUXURY')
   .build();
 
-const car1 = new CarBuilder()
+const car1st = new CarBuilder()
   .addEngine('v10')
   .addBody('KIA SOLUTION LUXURY')
   .build();
 
 console.log('Car', car.toString())
-console.log('Car1', car1.toString())
+console.log('Car1st', car1st.toString())

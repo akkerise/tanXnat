@@ -29,10 +29,6 @@ const throttle = (fn, delay) => {
 
 const uniq = (raws, key) => [...new Map(raws.map(item => [item[key], item])).values()]
 
-const compose = (...fns) => fns.reduce((f, g) => (x) => f(g(x)))
-
-const pipe = (...fns) => fns.reduce((f, g) => (x) => g(f(x)));
-
 /**
  * @method deduplicate2nd
  * @param arr [2, 1, 0, 3, 2, 1, 2];
@@ -102,14 +98,12 @@ module.exports = {
   debounce,
   throttle,
   parseUrl,
-  compose,
   unique,
   delay,
   group,
   unzip,
-  pipe,
   uniq,
   flat,
   max,
   min
-} 
+}

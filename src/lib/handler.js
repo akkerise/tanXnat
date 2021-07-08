@@ -8,33 +8,21 @@ const res = {
 }
 */
 
-const RESPONSES = {
-  200: {status: true, message: 'Success'},
-  204: {status: true, message: 'Not content'},
-  400: {status: false, message: 'Bad request'},
-  404: {status: false, message: 'Not found'},
-  500: {status: false, message: 'Server error'},
-  666: {status: false, message: 'Something went wrong'},
-}
-
-const isSuccess = response => response.error && !!response.error.status 
-
-const getSuccess = get(isSuccess)
-
-const getData = response => response.data || null
+const RESPONSES = [
+  { status: true, message: 'Success', code: 200 },
+  { status: true, message: 'Not content', code: 204 },
+  { status: false, message: 'Bad request', code: 400 },
+  { status: false, message: 'Not found', code: 404 },
+  { status: false, message: 'Server error', code: 500 },
+  { status: false, message: 'Something went wrong', code: 666 },
+]
 
 const get = by => arr => by(arr)
 
-const data = get(getData)
+const getResponse = (response) => RESPONSES.find(res => res.code === response.code) || RESPONSES.find(res => res.code === 666)
 
-const getError = code => code ? RESPONSES[code] : RESPONSES[666]
-
-const error = get(getError)
-
-const getResponse = (response) => ({error: error(response), data: data(response)})
+const response = get(getResponse)
 
 module.exports = {
-  getResponse,
-  getSuccess,
-  getError,
+  response,
 }

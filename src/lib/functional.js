@@ -1,12 +1,8 @@
 const get = fn => arr => fn(arr)
 
-const findMax = arr => Math.max(...arr)
+const compose = (...fns) => fns.reduce((f, g) => (x) => f(g(x)))
 
-const findMin = arr => Math.min(...arr)
-
-const max = get(findMax)
-
-const min = get(findMin)
+const pipe = (...fns) => fns.reduce((f, g) => (x) => g(f(x)))
 
 const curry = (fn) => {
   let totalArguments = fn.length;
@@ -20,9 +16,7 @@ const curry = (fn) => {
 
 module.exports = {
   get,
-  min,
-  max,
+  pipe,
   curry,
-  findMax,
-  findMin,
+  compose,
 }
