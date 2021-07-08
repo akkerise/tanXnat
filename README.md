@@ -4,10 +4,10 @@ READ.
 - Root function `to` when import, you need import with syntax `import common from "tanxnat"`, then follow me in below:
 `const {to} = common;
  const {spacePhone, friendly, random, vn} = to`
-```spacePhone``` is function convert phone from `0968381829` to `0968 381 829`
-``use`` `spacePhone("0968381829") => "0968 381 829"`
-```random``` is function random a `string` with input is length also you will expect
-``use`` ``random(6) => "asjkda"``
++ ```spacePhone``` is function convert phone from `0968381829` to `0968 381 829`
+ ``use`` `spacePhone("0968381829") => "0968 381 829"`
++ ```random``` is function random a `string` with input is length also you will expect
+ ``use`` ``random(6) => "asjkda"``
 ```friendly``` is function convert a `string` to `uri` with input "My A Me" => "my-a-me"
 ``use`` ``friendly("My A Me") => "my-a-me"``
 ```vn``` is function convert `Tôi là ai` to `Toi la ai` 
