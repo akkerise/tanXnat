@@ -3,7 +3,7 @@ const spacePhone = phone => {
   return match ? match[1] + ' ' + match[2] + ' ' + match[3] : null
 }
 
-const random = (length = 6) => {
+const random = (length = 0) => {
   var result = '';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var charactersLength = characters.length;
