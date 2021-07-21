@@ -86,7 +86,7 @@ vn(`Tôi là ai`) => `Toi la ai`
 
 * compose
 
-1. Module `handler`
+4. Module `handler`
 
 * response
 
