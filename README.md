@@ -31,9 +31,67 @@ friendly("My A Me") => "my-a-me"
 vn(`Tôi là ai`) => `Toi la ai`
 ```
 2. Module `core`
+
+* deduplicate2nd
+
+
+* deduplicate
+
+
+* difference
+
+
+* debounce
+
+
+* throttle
+
+
+* parseUrl
+
+
+* unique
+
+
+* delay
+
+
+* group
+
+
+* unzip
+
+
+* uniq
+
+
+* flat
+
+
+* max
+
+
+* min
   
 3. Module `fp`
 
-4. Module `handler`
+* get
+
+
+* pipe
+
+
+* curry
+
+
+* compose
+
+1. Module `handler`
+
+* response
 
 5. Module `validator`
+
+* email
+
+* phone
