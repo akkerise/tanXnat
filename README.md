@@ -1,5 +1,11 @@
 # tanXnat
-READ.
+## `INSTALL`
+
+```
+npm i tanxnat
+```
+
+## `USE CASE`
 1. Module `common`
 - Root function `to` when import, you need import with syntax `import common from "tanxnat"`, then follow me in below:
 
