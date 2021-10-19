@@ -23,6 +23,4 @@ const getResponse = (response) => RESPONSES.find(res => res.code === response.co
 
 const response = get(getResponse)
 
-module.exports = {
-  response,
-}
+module.exports = { response }
