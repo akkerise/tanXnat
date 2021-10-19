@@ -14,9 +14,4 @@ const curry = (fn) => {
   return next(totalArguments, []);
 };
 
-module.exports = {
-  get,
-  pipe,
-  curry,
-  compose,
-}
+module.exports = { get, pipe, curry, compose, }
