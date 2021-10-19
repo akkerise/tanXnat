@@ -33,4 +33,3 @@ const compose = () => {
   return validator.check();
 }
 
-console.log('compose() :>> ', compose());
