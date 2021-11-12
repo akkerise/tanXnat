@@ -1,7 +1,5 @@
 class SuperArray extends Array {
-  constructor() {
-
-  }
+  constructor() { }
 
   diff(comparisonArray) {
     const hash = new Set(comparisonArray)

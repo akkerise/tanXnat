@@ -9,13 +9,10 @@ const strategies = {
 
 const Validator = () => {
   const queues = [];
-
   const add = (value, method) => {
     queues.push(() => strategies[method](value))
   }
-
-  const check = () => queues.every(fn => fn());
-
+  const check = () => queues.every(fn => fn())
   return { add, check }
 }
 
@@ -27,9 +24,10 @@ const data = {
 
 const compose = () => {
   const validator = Validator();
-  validator.add(data.role, 'checkRole');
-  validator.add(data.grade, 'checkGrade');
-  validator.add(data.job, 'checkJob');
+  validator.add(data.role, 'checkRole')
+  validator.add(data.grade, 'checkGrade')
+  validator.add(data.job, 'checkJob')
   return validator.check();
 }
 
+compose()
