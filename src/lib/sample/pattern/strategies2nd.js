@@ -1,12 +1,12 @@
-// list job 
-const jobList = ['FE', 'BE'];
+const JOBS = ['FE', 'BE'];
+const EAT_TYPES = ['Dog', 'Cat']
+const ROLES = ['admin']
 
-// function
 var strategies = {
-  checkRole: value => value === 'admin',
-  checkGrade: value => value >= 1,
-  checkJob: value => jobList.includes(value),
-  checkEatType: value => value === 'eat Dog'
+  checkRole: v => ROLES.includes(v),
+  checkGrade: v => v >= 1,
+  checkJob: v => JOBS.includes(v),
+  checkEatType: v => EAT_TYPES.includes(v)
 }
 
 class Validator {
@@ -19,6 +19,7 @@ class Validator {
   }
 
   check() {
+    console.log('this.cache', this.cache)
     return this.cache.every(f => f())
   }
 }
