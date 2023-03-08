@@ -17,14 +17,7 @@ function Validator() {
   };
 
   this.check = function () {
-    for (let i = 0; i < this.cache.length; i++) {
-      let validFn = this.cache[i];
-      var data = validFn();
-      if (!data) {
-        return false;
-      }
-    }
-    return true;
+    return this.cache.every(f => f())
   };
 }
 
