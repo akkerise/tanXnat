@@ -40,6 +40,27 @@ const friendly = str => {
     .toLocaleLowerCase() || ''
 }
 
+const sliceIntoChunks = async (arr, chunkSize) => {
+  const res = []
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize)
+    res.push(chunk)
+  }
+  return res
+}
+
+const uniqByKeepFirst = (arr, key) => {
+  let seen = new Set();
+  return arr.filter(v => seen.has(key(v)) ? false : seen.add(key(v)))
+}
+
+const uniqByKeepLast = (arr, key) => {
+  return [...new Map(arr.map(v => [key(v), v])).values()]
+}
+
+const getUniqueListBy = (arr, key) => [...new Map(arr.map(item => [item[key], item])).values()]
+
+
 module.exports = {
   to: {
     spacePhone,
@@ -47,4 +68,12 @@ module.exports = {
     random,
     vn,
   },
+  trick: {
+    sliceIntoChunks
+  },
+  duplicate: {
+    uniqByKeepFirst,
+    uniqByKeepLast,
+    getUniqueListBy
+  }
 }

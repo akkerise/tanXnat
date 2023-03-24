@@ -1,6 +1,6 @@
 {
   "name": "tanxnat",
-  "version": "0.0.51",
+  "version": "0.0.65",
   "description": "tanXnat",
   "main": "dist/tanxnat.js",
   "scripts": {
