@@ -14,4 +14,18 @@ const curry = (fn) => {
   return next(totalArguments, []);
 };
 
-module.exports = { get, pipe, curry, compose, }
+const memoize = (func) => {
+  const cache = new Map();
+    
+  return (...args) => {
+    const key = args.join('-');
+
+    if(!cache.has(key)) {
+      cache.set(key, func(args))
+    }
+
+    return cache.get(key);
+  }
+}
+
+module.exports = { get, pipe, curry, compose, memoize}
