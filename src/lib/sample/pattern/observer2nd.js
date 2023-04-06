@@ -1,40 +1,32 @@
 class Observer {
-  constructor(name) {
-    this.namePick = name;
+  constructor(name){
+    this.name = name
   }
-
-  update(location) {
+  
+  update(location){
     this.goToHelp(location);
   }
 
-  goToHelp(location) {
-    console.log(`${this.namePick} ping ::${location}`);
+  goToHelp(location){
+    console.log(`${this.name} ping::${JSON.stringify(location)}`);
   }
 }
 
 class Subject {
-  constructor() {
-    this.observerList = []
+  constructor(){
+    this.observers = []
   }
-
-  addObserver(observer) {
-    this.observerList.push(observer);
+  subscribe(observer){
+    this.observers.push(observer);
   }
-
-  notify(location) {
-    this.observerList.forEach(observer => observer.update(location))
+  notify(location){
+    this.observers.forEach(observer => observer.update(location));
   }
 }
 
-const subject = new Subject()
-
-// your pick
+const subject = new Subject();
 const riki = new Observer('Riki')
 const sniper = new Observer('Sniper')
-
-// add riki and sniper to team
-subject.addObserver(riki)
-subject.addObserver(sniper)
-
-// push location to Team
-subject.notify({ long: 123, lat: 106 })
+subject.subscribe(riki)
+subject.subscribe(sniper)
+subject.notify({long: 123, lat: 106})
