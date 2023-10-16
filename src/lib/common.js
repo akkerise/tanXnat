@@ -60,6 +60,12 @@ const uniqByKeepLast = (arr, key) => {
 
 const getUniqueListBy = (arr, key) => [...new Map(arr.map(item => [item[key], item])).values()]
 
+const uuid = () => {
+  var temp_url = URL.createObjectURL(new Blob());
+  var uuid = temp_url.toString();
+  URL.revokeObjectURL(temp_url);
+  return uuid.substr(uuid.lastIndexOf('/') + 1); // remove prefix (e.g. blob:null/, blob:www.test.com/, ...)
+}
 
 module.exports = {
   to: {
@@ -75,5 +81,6 @@ module.exports = {
     uniqByKeepFirst,
     uniqByKeepLast,
     getUniqueListBy
-  }
+  },
+  uuid
 }
