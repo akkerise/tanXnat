@@ -67,6 +67,10 @@ const uuid = () => {
   return uuid.substr(uuid.lastIndexOf('/') + 1); // remove prefix (e.g. blob:null/, blob:www.test.com/, ...)
 }
 
+const test = () => {
+  return null
+}
+
 module.exports = {
   to: {
     spacePhone,
