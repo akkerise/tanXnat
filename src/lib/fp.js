@@ -16,11 +16,11 @@ const curry = (fn) => {
 
 const memoize = (func) => {
   const cache = new Map();
-    
+
   return (...args) => {
     const key = args.join('-');
 
-    if(!cache.has(key)) {
+    if (!cache.has(key)) {
       cache.set(key, func(args))
     }
 
@@ -28,4 +28,17 @@ const memoize = (func) => {
   }
 }
 
-module.exports = { get, pipe, curry, compose, memoize}
+const memoizer = (fun) => {
+  let cache = {}
+  return (n) => {
+    if (cache[n] != undefined) {
+      return cache[n]
+    } else {
+      let result = fun(n)
+      cache[n] = result
+      return result
+    }
+  }
+}
+
+module.exports = { get, pipe, curry, compose, memoize, memoizer }
