@@ -14,31 +14,42 @@ const curry = (fn) => {
   return next(totalArguments, []);
 };
 
-const memoize = (func) => {
+const memoize = (fn) => {
   const cache = new Map();
 
   return (...args) => {
     const key = args.join('-');
 
     if (!cache.has(key)) {
-      cache.set(key, func(args))
+      cache.set(key, fn(args))
     }
 
     return cache.get(key);
   }
 }
 
-const memoizer = (fun) => {
+const memoizer = (fn) => {
   let cache = {}
   return (n) => {
     if (cache[n] != undefined) {
       return cache[n]
     } else {
-      let result = fun(n)
+      let result = fn(n)
       cache[n] = result
       return result
     }
   }
 }
 
-module.exports = { get, pipe, curry, compose, memoize, memoizer }
+/**
+  * How to the way use memoizer function
+  */
+
+const fibonacci = (n) => {
+  if (n <= 1) return 1
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+const fibonacciMemoizer = memoizer(fibonacci)
+
+
+module.exports = { get, pipe, curry, compose, memoize, memoizer, fibonacciMemoizer }
