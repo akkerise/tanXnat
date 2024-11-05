@@ -40,7 +40,7 @@ const friendly = str => {
     .toLocaleLowerCase() || ''
 }
 
-const sliceIntoChunks = async (arr, chunkSize) => {
+const sliceIntoChunksByFor = (arr, chunkSize) => {
   const res = []
   for (let i = 0; i < arr.length; i += chunkSize) {
     const chunk = arr.slice(i, i + chunkSize)
@@ -49,23 +49,28 @@ const sliceIntoChunks = async (arr, chunkSize) => {
   return res
 }
 
+// const sliceIntoChunksByReduce = (arr, chunkSize) => {
+//   return Array.from({ length: Math.ceil(arr.length / chunkSize) })
+//     .reduce((arr, _, index) => [...arr.slice(index * chunkSize, (index + 1) * chunkSize), chunk], [])
+// }
+
 const uniqByKeepFirst = (arr, key) => {
   let seen = new Set();
   return arr.filter(v => seen.has(key(v)) ? false : seen.add(key(v)))
 }
 
-const uniqByKeepLast = (arr, key) => {
-  return [...new Map(arr.map(v => [key(v), v])).values()]
-}
+const uniqByKeepLast = (arr, key) => [...new Map(arr.map(v => [key(v), v])).values()]
 
 const getUniqueListBy = (arr, key) => [...new Map(arr.map(item => [item[key], item])).values()]
 
-const uuid = () => {
-  var temp_url = URL.createObjectURL(new Blob());
-  var uuid = temp_url.toString();
+const uuidv1 = () => {
+  let temp_url = URL.createObjectURL(new Blob());
+  const uuid = temp_url.toString();
   URL.revokeObjectURL(temp_url);
-  return uuid.substr(uuid.lastIndexOf('/') + 1); // remove prefix (e.g. blob:null/, blob:www.test.com/, ...)
+  return uuid && uuid.substr(uuid.lastIndexOf('/') + 1); // remove prefix (e.g. blob:null/, blob:www.test.com/, ...)
 }
+
+const uuidv2 = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => ((Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)).toString()))
 
 module.exports = {
   to: {
@@ -75,12 +80,14 @@ module.exports = {
     vn,
   },
   trick: {
-    sliceIntoChunks
+    sliceIntoChunksByFor,
+    // sliceIntoChunksByReduce
   },
   duplicate: {
     uniqByKeepFirst,
     uniqByKeepLast,
     getUniqueListBy
   },
-  uuid
+  uuidv1,
+  uuidv2,
 }
