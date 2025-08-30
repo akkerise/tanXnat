@@ -1,0 +1,147 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "secapi"
+  namespace: "default"
+  labels:
+    app: "secapi"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "secapi"
+  template:
+    metadata:
+      labels:
+        app: "secapi"
+    spec:
+      containers:
+      - name: "secapp-48fa7"
+        image: "asia-east1-docker.pkg.dev/secapp-48fa7/secapp/secapi:v1"
+        imagePullPolicy: Always
+        env:
+        - name: "DATABASE_TYPE"
+          valueFrom:
+            configMapKeyRef:
+              key: "DATABASE_TYPE"
+              name: "secapi-config-smqi"
+        - name: "DATABASE_HOST"
+          # value: "34.81.196.101"
+          valueFrom:
+            configMapKeyRef:
+              key: "DATABASE_HOST"
+              name: "secapi-config-smqi"
+        - name: "DATABASE_PORT"
+          value: "5432"
+        - name: "DATABASE_USERNAME"
+          valueFrom:
+            configMapKeyRef:
+              key: "DATABASE_USERNAME"
+              name: "secapi-config-smqi"
+        - name: "DATABASE_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "DATABASE_PASSWORD"
+              name: "secapi-config-smqi"
+        - name: "DATABASE_NAME"
+          valueFrom:
+            configMapKeyRef:
+              key: "DATABASE_NAME"
+              name: "secapi-config-smqi"
+        - name: "DATABASE_LOGGING"
+          valueFrom:
+            configMapKeyRef:
+              key: "DATABASE_LOGGING"
+              name: "secapi-config-smqi"
+        - name: "REDIS_HOST"
+          valueFrom:
+            configMapKeyRef:
+              key: "REDIS_HOST"
+              name: "secapi-config-smqi"
+        - name: "GOOGLE_MAP_KEY"
+          valueFrom:
+            configMapKeyRef:
+              key: "GOOGLE_MAP_KEY"
+              name: "secapi-config-smqi"
+        - name: "GOOGLE_MAP_API"
+          valueFrom:
+            configMapKeyRef:
+              key: "GOOGLE_MAP_API"
+              name: "secapi-config-smqi"
+        - name: "SMS_KARADEN_API_KEY"
+          valueFrom:
+            configMapKeyRef:
+              key: "SMS_KARADEN_API_KEY"
+              name: "secapi-config-smqi"
+        - name: "SMS_KARADEN_API_ID"
+          valueFrom:
+            configMapKeyRef:
+              key: "SMS_KARADEN_API_ID"
+              name: "secapi-config-smqi"
+        - name: "LINE_API"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_API"
+              name: "secapi-config-smqi"
+        - name: "LINE_LOGIN_CHANEL"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_LOGIN_CHANEL"
+              name: "secapi-config-smqi"
+        - name: "LINE_SECRET"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_SECRET"
+              name: "secapi-config-smqi"
+        - name: "LINE_OAUTH2"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_OAUTH2"
+              name: "secapi-config-smqi"
+        - name: "LINE_PROFILRE"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_PROFILRE"
+              name: "secapi-config-smqi"
+        - name: "LINE_REVOKE"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_REVOKE"
+              name: "secapi-config-smqi"
+        - name: "LINE_NEW_USER_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "LINE_NEW_USER_PASSWORD"
+              name: "secapi-config-smqi"
+        - name: "UPLOAD_DIR"
+          valueFrom:
+            configMapKeyRef:
+              key: "UPLOAD_DIR"
+              name: "secapi-config-smqi"
+        - name: "IMAGE_URL"
+          valueFrom:
+            configMapKeyRef:
+              key: "IMAGE_URL"
+              name: "secapi-config-smqi"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "secapi-hpa-dkge"
+  namespace: "default"
+  labels:
+    app: "secapi"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "secapi"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 80

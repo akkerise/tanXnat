@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "types": ["node", "multer"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@Common/*": ["src/common/*"],
+      "@Data/*": ["src/common/data/*"],
+      "@Enum/*": ["src/common/enum/*"],
+      "@Util/*": ["src/common/util/*"],
+      "@Entities/*": ["src/entities/*"],
+      "@Config/*": ["src/common/config/*"],
+      "@Constant/*": ["src/common/constant/*"],
+      "@Validator/*": ["src/common/validator/*"],
+      "@Decorator/*": ["src/common/decorator/*"],
+      "@Exception/*": ["src/common/exception/*"]
+    }
+  }
+}

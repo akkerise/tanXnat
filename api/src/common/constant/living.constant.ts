@@ -1,0 +1,4 @@
+export enum LIVING_TYPE {
+  HOUSE = 'HOUSE',
+  APARTMENT = 'APARTMENT',
+}

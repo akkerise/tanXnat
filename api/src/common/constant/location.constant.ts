@@ -1,0 +1,10 @@
+export enum LOCATION_TYPE {
+  EMERGENCY = 'EMERGENCY',
+  LIVE_SHARING = 'LIVE_SHARING',
+  CHECK_IN = 'CHECK_IN',
+}
+
+export enum LOCATION_STATUS {
+  SHARING = 'SHARING',
+  STOP = 'STOP',
+}

@@ -1,0 +1,60 @@
+name: Push to GCR GitHub Action
+on:
+  push:
+    branches: ["master"]
+jobs:
+  build-and-push-to-gcr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:      
+      - uses: actions/checkout@v4
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          token_format: access_token
+          workload_identity_provider: projects/721290659658/locations/global/workloadIdentityPools/secapp-pool/providers/secapp-provider
+          service_account: secapp-service-account@secapp-48fa7.iam.gserviceaccount.com
+          access_token_lifetime: 300s
+      - name: Login to Artifact Registry
+        uses: docker/login-action@v3
+        with:
+          registry: asia-east1-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+      - name: Create json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "serviceAccountKey.json"
+          json: ${{ secrets.SERVICE_ACCOUNT }}
+      # - name: Echo secrets
+      #   run: |
+      #     echo $SERVICE_ACCOUNT >> ./serviceAccountKey.json
+      #     cat ./serviceAccountKey.json
+      #   shell: bash
+      #   env:
+      #     # Feel free to rename this variable, but make sure to update it everywhere. You should paste your entire file in your secrets
+      #     SERVICE_ACCOUNT : ${{secrets.SERVICE_ACCOUNT}}
+      - id: docker-push-tagged
+        name: Tag Docker image and push to Google Artifact Registry
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+             asia-east1-docker.pkg.dev/secapp-48fa7/secapp/secapi:v1
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          version: '>= 455.0.0'
+      - name: Config kubect
+        run: |
+          gcloud config set project secapp-48fa7
+          gcloud config set compute/zone asia-east2-a
+          gcloud container clusters get-credentials secapp-stg
+          gcloud components install gke-gcloud-auth-plugin
+      - name: Rollout
+        run: kubectl rollout restart deployment/secapi

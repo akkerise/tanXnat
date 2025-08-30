@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: secapi-config-smqi
+  namespace: default
+  labels:
+    app: secapi
+data:
+  DATABASE_HOST: 
+  DATABASE_LOGGING: "false"
+  DATABASE_NAME: 
+  DATABASE_PASSWORD:
+  DATABASE_TYPE: postgres
+  DATABASE_USERNAME: root
+  REDIS_HOST: redis-cluster

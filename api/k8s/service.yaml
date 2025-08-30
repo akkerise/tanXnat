@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: secapi
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: secapi
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: secapi
+# spec:
+#   selector:
+#     app: secapi
+#   ports:
+#     - protocol: TCP
+#       port: 3000
+#  type: LoadBalancer
