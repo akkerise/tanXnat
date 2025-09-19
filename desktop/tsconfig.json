@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
-    "incremental": true,
-    "target": "es2022",
-    "module": "node16",
-    "lib": ["dom", "es2022"],
+    "target": "ES2020",
+    "lib": ["DOM", "ES2020"],
+    "module": "ESNext",
     "jsx": "react-jsx",
-    "strict": true,
-    "sourceMap": true,
-    "moduleResolution": "node16",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
-    "allowJs": true,
-    "outDir": ".erb/dll"
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
+  "include": ["src", "electron"],
+  "exclude": ["node_modules", "dist"]
 }
+
