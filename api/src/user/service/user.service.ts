@@ -1,14 +1,10 @@
 import { firebaseAuth } from '@/common/config/firebase.config';
-import { FileFolderNames } from '@/common/constant/file.constant';
 import { REGEXP_PASSWORD } from '@/common/constant/regexp.constant';
-import { CODE_TYPE } from '@/common/enum/codeType.enum';
 import { SuccessRes } from '@/common/response/success.res';
 import { checkBoolean } from '@/common/util/check.type';
 import { convertFamily } from '@/common/util/convertFamily';
-import { generateInviteCode } from '@/common/util/generateInviteCode';
 import { FileService } from '@/file/service/file.service';
 import { LoggerService } from '@/logger/logger.service';
-import { Express } from 'express';
 import { ErrorCodes } from '@Constant/error.constant';
 import { USER_SALT_PASSWORD } from '@Constant/user.constant';
 import { TypeOrmCrudService } from '@dataui/crud-typeorm';
@@ -116,29 +112,6 @@ export class UserService extends TypeOrmCrudService<UserEntity> {
     }
   }
 
-  async generateInviteCode() {
-    const inviteCode = generateInviteCode(CODE_TYPE.FAMILY_INVITE);
-    const checkInviteCode = await this.userRepository.findOne({
-      where: { inviteCode: inviteCode || '' },
-    });
-    return !checkInviteCode ? inviteCode : await this.generateInviteCode();
-  }
-
-  async refreshInviteCode(userId: string): Promise<SuccessRes> {
-    try {
-      const inviteCode = await this.generateInviteCode();
-      await this.userRepository.update(userId, { inviteCode });
-      return {
-        success: true,
-      };
-    } catch (error) {
-      error = this.loggerService.getLog(error);
-      throw new CBadRequestException(
-        error?.message || ErrorCodes.SOMETHING_WENT_WRONG,
-      );
-    }
-  }
-
   async create(userInfo: CreateUserDto): Promise<UserProfile> {
     try {
       if (userInfo?.password && !REGEXP_PASSWORD.test(userInfo.password)) {
@@ -163,14 +136,13 @@ export class UserService extends TypeOrmCrudService<UserEntity> {
         password: bcrypt.hashSync(userInfo.password, USER_SALT_PASSWORD),
       });
 
-      const { id, name, gender, roleId, birthday, note, username } = user;
+      const { id, name, gender, roleId, note, username } = user;
       return {
         id,
         username,
         name,
         gender,
         roleId,
-        birthday,
         note,
       };
     } catch (e) {

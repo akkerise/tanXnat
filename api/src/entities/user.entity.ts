@@ -40,20 +40,11 @@ export class UserEntity {
   @Column({ select: false })
   password?: string;
 
-  @Column({ nullable: true })
-  lineId?: string;
-
   @Column({ name: 'role_id' })
   roleId?: number;
   @ManyToOne(() => RoleEntity, { createForeignKeyConstraints: false })
   @JoinColumn({ name: 'role_id' })
   role?: RoleEntity;
-
-  @Column({ nullable: true })
-  birthday?: string;
-
-  @Column({ nullable: true, name: 'banned_at', type: 'date' })
-  bannedAt?: Date;
 
   @Column({ nullable: true, name: 'expired_at', type: 'date' })
   expiredAt?: Date;

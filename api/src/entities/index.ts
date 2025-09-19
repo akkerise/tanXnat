@@ -6,6 +6,8 @@ import { RoleEntity } from './role.entity';
 import { UserEntity } from './user.entity';
 import { NotificationEntity } from './notification.entity';
 import { FCMEntity } from './fcm.entity';
+import { Chapter } from './chapter.entity';
+import { Story } from './story.entity';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { FCMEntity } from './fcm.entity';
       RoleEntity,
       SessionEntity,
       UserEntity,
+      Chapter,
+      Story,
     ]),
   ],
 })

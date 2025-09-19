@@ -150,25 +150,7 @@ export class UserController {
   @Override('createOneBase')
   @UseGuards(TokenGuard, RolesGuard)
   @HasPerm(RolePerms.CREATE_UPDATE_USER)
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        images: {
-          type: 'string',
-          format: 'binary',
-          description: 'file image/pdf',
-        },
-      },
-    },
-  })
-  @ApiConsumes('multipart/form-data')
-  @UseInterceptors(
-    FilesInterceptor('images[]', 1, {
-      fileFilter,
-    }),
-  )
-  async createOne(@UploadedFiles() images, @Body() body: CreateUserDto) {
-    return await this.service.create(body, images);
+  async createOne(@Body() body: CreateUserDto) {
+    return await this.service.create(body);
   }
 }

@@ -38,15 +38,12 @@ export class AuthService {
     private jwtService: JwtService,
     @Inject(CACHE_MANAGER)
     protected cacheManager: Cache,
-  ) { }
+  ) {}
 
   async login(payload: LoginDto, agent: string, ip: string): Promise<AuthRes> {
     const user = await this.userRepository.findOne({
-      where: [
-        { username: payload?.username || '' },
-        { phone: payload?.username || '' },
-      ],
-      select: ['id', 'username', 'password'],
+      where: [{ username: payload?.username || '' }],
+      select: ['id', 'username', 'password', 'active'],
       relations: ['role'],
     });
 
@@ -68,8 +65,7 @@ export class AuthService {
           userId: user?.id,
         }),
       );
-      const auth = await this.sessionService.createTokenLogin(user, agent, ip);
-      return auth;
+      return await this.sessionService.createTokenLogin(user, agent, ip);
     } catch (error) {
       error = this.loggerService.getLog(error);
       throw new CBadRequestException(error.message || ErrorCodes.LOGIN_FAILED);

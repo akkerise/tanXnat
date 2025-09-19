@@ -6,6 +6,7 @@ export class LoginDto {
   @ApiProperty({
     required: true,
   })
+  @IsNotEmpty()
   username: string;
 
   @ApiProperty({

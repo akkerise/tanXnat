@@ -13,6 +13,7 @@ import { JWT_LIFETIME, JWT_SECRET } from '@/common/constant/jwt.constant';
 import { SessionService } from '@/auth/service/session.service';
 import { HttpModule } from '@nestjs/axios';
 import { FCMEntity } from '@/entities/fcm.entity';
+import { InitUserService } from './service/init_user.service';
 
 @Module({
   imports: [
@@ -29,7 +30,13 @@ import { FCMEntity } from '@/entities/fcm.entity';
     HttpModule,
   ],
   controllers: [UserController, MeController],
-  providers: [UserService, SessionService, FileService, LoggerService],
+  providers: [
+    UserService,
+    SessionService,
+    FileService,
+    LoggerService,
+    InitUserService,
+  ],
   exports: [UserService],
 })
 export class UserModule {}

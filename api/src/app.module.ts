@@ -16,6 +16,7 @@ import configuration from './common/config';
 import { IRedisConfig } from './common/config/redis.config';
 import { FileModule } from './file/file.module';
 import { NotificationModule } from './notification/notification.module';
+import { StoryModule } from './story/story.module';
 import { RoleModule } from './role/role.module';
 import { UserModule } from './user/user.module';
 import { IsNotExitsRoleConstraint } from './user/validator/check-role.validator';
@@ -25,6 +26,8 @@ import { IsNotExitsRoleConstraint } from './user/validator/check-role.validator'
     ConfigModule.forRoot({
       load: configuration,
       isGlobal: true,
+      // Prefer local overrides when running outside Docker
+      envFilePath: ['.env.local', '.env'],
     }),
     ThrottlerModule.forRoot([
       {
@@ -108,6 +111,7 @@ import { IsNotExitsRoleConstraint } from './user/validator/check-role.validator'
     UserModule,
     FileModule,
     NotificationModule,
+    StoryModule,
   ],
   providers: [
     IsUnique,
